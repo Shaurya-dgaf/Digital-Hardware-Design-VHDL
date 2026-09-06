@@ -1,0 +1,19 @@
+
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+entity full_subtractor is
+    Port (
+        a      : in  STD_LOGIC;
+        b      : in  STD_LOGIC;
+        bin    : in  STD_LOGIC;
+        diff   : out STD_LOGIC;
+        bout   : out STD_LOGIC
+    );
+end full_subtractor;
+
+architecture Dataflow of full_subtractor is
+begin
+    diff <= a XOR b XOR bin;
+    bout <= ((NOT a) AND b) OR ((NOT (a XOR b)) AND bin);
+end Dataflow;
