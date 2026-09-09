@@ -1,0 +1,22 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+entity d_latch_beh is
+    Port (
+        d    : in  STD_LOGIC;
+        en   : in  STD_LOGIC;
+        q    : out STD_LOGIC;
+        qbar : out STD_LOGIC
+    );
+end d_latch_beh;
+
+architecture Behavioral of d_latch_beh is
+begin
+    process(d, en)
+    begin
+        if en = '1' then
+            q    <= d;
+            qbar <= not d;
+        end if;
+    end process;
+end Behavioral;
