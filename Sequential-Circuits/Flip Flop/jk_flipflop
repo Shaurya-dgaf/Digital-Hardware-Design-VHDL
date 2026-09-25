@@ -1,0 +1,31 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+entity jk_truth_table is
+    Port (
+        j    : in  STD_LOGIC;
+        k    : in  STD_LOGIC;
+        q    : out STD_LOGIC;
+        qbar : out STD_LOGIC
+    );
+end jk_truth_table;
+
+architecture Behavioral of jk_truth_table is
+    signal q_reg : STD_LOGIC := '0';
+begin
+    process(j, k, q_reg)
+    begin
+        if (j = '0' and k = '0') then
+            q_reg <= q_reg;
+        elsif (j = '0' and k = '1') then
+            q_reg <= '0';
+        elsif (j = '1' and k = '0') then
+            q_reg <= '1';
+        elsif (j = '1' and k = '1') then
+            q_reg <= not q_reg;
+        end if;
+    end process;
+
+    q    <= q_reg;
+    qbar <= not q_reg;
+end Behavioral;
