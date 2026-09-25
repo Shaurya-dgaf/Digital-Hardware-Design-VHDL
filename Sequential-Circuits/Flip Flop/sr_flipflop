@@ -1,0 +1,31 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+entity sr_truth_table is
+    Port (
+        s    : in  STD_LOGIC;
+        r    : in  STD_LOGIC;
+        q    : out STD_LOGIC;
+        qbar : out STD_LOGIC
+    );
+end sr_truth_table;
+
+architecture Behavioral of sr_truth_table is
+    signal q_reg : STD_LOGIC := '0';
+begin
+    process(s, r, q_reg)
+    begin
+        if (s = '0' and r = '0') then
+            q_reg <= q_reg;
+        elsif (s = '0' and r = '1') then
+            q_reg <= '0';
+        elsif (s = '1' and r = '0') then
+            q_reg <= '1';
+        elsif (s = '1' and r = '1') then
+            q_reg <= 'X';
+        end if;
+    end process;
+
+    q    <= q_reg;
+    qbar <= not q_reg;
+end Behavioral;
